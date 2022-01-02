@@ -1,0 +1,1 @@
+OUTPUT_FOLDER_NAME = "output"
