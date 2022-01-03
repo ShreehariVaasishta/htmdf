@@ -14,6 +14,10 @@ pip3 install -r requirements.txt
 ```
 uvicorn main:app --reload
 ```
+# Usage
+1. Here we created a html template for certificates. 
+2. Added csv with columns which needs to be replaced in the html template.
+
 
 # Sample
 <b>Input Form</b><br/><br/>
