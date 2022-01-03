@@ -2,8 +2,10 @@ import csv
 import pdfkit
 import os
 from datetime import datetime
-from constants import *
 import shutil
+import zipfile
+
+from constants import *
 
 
 def clean_out_dir():
@@ -60,4 +62,7 @@ def get_output_pdfs():
 def zip_output_pdf_files():
     files = get_output_pdfs()
     output_file_name = f"{OUTPUT_FOLDER_NAME}/output"
-    return shutil.make_archive(output_file_name, "zip", OUTPUT_FOLDER_NAME)
+    myZipFile = zipfile.ZipFile(output_file_name, "w")
+    for file in files:
+        myZipFile.write(f"{OUTPUT_FOLDER_NAME}/{file}", file)
+    return output_file_name

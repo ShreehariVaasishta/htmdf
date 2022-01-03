@@ -1,8 +1,9 @@
 from fastapi import FastAPI
 import os
-from fastapi.responses import FileResponse, HTMLResponse
+from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 from starlette.requests import Request
+from starlette.responses import FileResponse
 
 from utils import (
     csv_to_dict,
