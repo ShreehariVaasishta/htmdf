@@ -1,6 +1,13 @@
-from typing import Iterable
 from fastapi import FastAPI, File
-from utils import csv_to_dict, replace_message_context_with_html, html_str_to_pdf
+from fastapi.responses import FileResponse
+
+from utils import (
+    csv_to_dict,
+    replace_message_context_with_html,
+    html_str_to_pdf,
+    zip_output_pdf_files,
+)
+
 
 app = FastAPI()
 
@@ -15,5 +22,7 @@ def upload_file(html_content: str, file: bytes = File(...)):
     processed_csv = [
         {f"{i['name']}": replace_message_context_with_html(html_content, i)} for i in x
     ]
-    return html_str_to_pdf(processed_csv)
-    # return processed_csv
+    html_str_to_pdf(processed_csv)
+    output_zip = zip_output_pdf_files()
+
+    return FileResponse(output_zip, media_type="application/zip")
