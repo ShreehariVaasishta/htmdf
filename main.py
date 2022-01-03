@@ -1,5 +1,7 @@
 from fastapi import FastAPI, File
-from fastapi.responses import FileResponse
+from fastapi.responses import FileResponse, HTMLResponse
+from fastapi.templating import Jinja2Templates
+from starlette.requests import Request
 
 from utils import (
     csv_to_dict,
@@ -10,6 +12,7 @@ from utils import (
 
 
 app = FastAPI()
+templates = Jinja2Templates(directory="templates")
 
 
 @app.post("/upload")
@@ -26,3 +29,8 @@ def upload_file(html_content: str, file: bytes = File(...)):
     output_zip = zip_output_pdf_files()
 
     return FileResponse(output_zip, media_type="application/zip")
+
+
+@app.get("/", response_class=HTMLResponse)
+def get_index(request: Request):
+    return templates.TemplateResponse("upload_file.html", {"request": request})

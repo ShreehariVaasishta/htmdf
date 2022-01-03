@@ -6,6 +6,13 @@ from constants import *
 import shutil
 
 
+def clean_out_dir():
+    """
+    Clean the output folder
+    """
+    shutil.rmtree(OUTPUT_FOLDER_NAME)
+
+
 def csv_to_dict(file: bytes) -> list:
     """
     Convert a csv file to a list of dictionaries
