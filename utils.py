@@ -3,6 +3,7 @@ import pdfkit
 import os
 from datetime import datetime
 from constants import *
+import shutil
 
 
 def csv_to_dict(file: bytes) -> list:
@@ -40,3 +41,16 @@ def html_str_to_pdf(html_content: list):
                 f"{OUTPUT_FOLDER_NAME}/{curr_datetime}-{list(content.keys())[0]}.pdf",
             )
     return True
+
+
+def get_output_pdfs():
+    """
+    Get all the pdfs in the output folder
+    """
+    return [file for file in os.listdir(OUTPUT_FOLDER_NAME) if file.endswith(".pdf")]
+
+
+def zip_output_pdf_files():
+    files = get_output_pdfs()
+    output_file_name = f"{OUTPUT_FOLDER_NAME}/output"
+    return shutil.make_archive(output_file_name, "zip", OUTPUT_FOLDER_NAME)
