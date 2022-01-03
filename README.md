@@ -14,3 +14,10 @@ pip3 install -r requirements.txt
 ```
 uvicorn main:app --reload
 ```
+
+# Sample
+<b>Input Form</b><br/><br/>
+![image](https://user-images.githubusercontent.com/37337599/147964589-5ffbd64e-7c75-4b04-bfd9-a964a75f3a5a.png)
+
+<b>Output PDF</b><br/><br/>
+![image](https://user-images.githubusercontent.com/37337599/147964737-27ae01e0-afc5-461a-bf9b-efc60eec030e.png)
